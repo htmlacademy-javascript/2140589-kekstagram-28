@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Андрей Калиушка](https://htmlacademy.ru/profile/id2140589).
-* Наставник: `Артём Рудов`(https://htmlacademy.ru/profile/id345377).
+* Наставник: [Артём Рудов](https://htmlacademy.ru/profile/id345377).
 
 ---
 

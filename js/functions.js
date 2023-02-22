@@ -1,31 +1,28 @@
-const checkString = (testString, length) => {
-  if(testString.length <= length) {
-    return true;
-  }
+const isLessOrEqual = (testString, length) => testString.length <= length;
 
-  return false;
-};
+isLessOrEqual('проверяемая строка', 20);
 
-const testPalindrom = (string) => {
+
+const isPalindrom = (string) => {
   const temtString = string.toLowerCase().replaceAll(' ', '');
-  let reverseString = '';
-  for (let i = temtString.length - 1; i >= 0; i--) {
-    reverseString += temtString.at(i);
-  }
-  if (temtString === reverseString) {
-    return true;
-  }
+  const reverseString = temtString.split('').reverse().join('');
 
-  return false;
+  return temtString === reverseString;
 };
+
+isPalindrom('Лёша на полке клопа нашёл ');
+
 
 const getNumber = (string) => {
   if (typeof string === 'number') {
     return string;
   }
+
   let newNumber = '';
+
   for (let i = 0; i < string.length; i++) {
-    let currentSymbol = parseInt(string.at(i), 10);
+    const currentSymbol = parseInt(string.at(i), 10);
+
     if (!isNaN(currentSymbol)) {
       newNumber += currentSymbol;
     }
@@ -34,12 +31,20 @@ const getNumber = (string) => {
   return parseInt(newNumber, 10);
 };
 
-const myPadStart = (string, minLenght, pad) => {
+getNumber('1 кефир, 0.5 батона');
+
+
+const getPad = (string, minLenght, pad) => {
   let result = string;
+
   while (result.length < minLenght) {
     const newResultLenght = result.length + pad.length;
     const actualPad = newResultLenght <= minLenght ? pad : pad.slice(0, minLenght - newResultLenght);
+
     result = actualPad + result;
   }
+
   return result;
 };
+
+getPad('qwerty', 4, '0');

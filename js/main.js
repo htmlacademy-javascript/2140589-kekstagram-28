@@ -26,7 +26,7 @@ const NAMES = [
   'Таня',
 ];
 
-const DESCRIPTION = [
+const DESCRIPTIONS = [
   'Какой хороший день!',
   'А ведь так все здорово',
   'Этот день был великолепен',
@@ -36,7 +36,7 @@ const DESCRIPTION = [
   'Так начинается мое типичное утро',
 ];
 
-const MESSAGE = [
+const MESSAGES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -59,10 +59,6 @@ function createRandomIdFromRangeGenerator (min, max) {
   return function () {
     let currentValue = getRandomInteger(min, max);
 
-    if (previousValues.length >= (max - min + 1)) {
-      return null;
-    }
-
     while (previousValues.includes(currentValue)) {
       currentValue = getRandomInteger(min, max);
     }
@@ -82,14 +78,14 @@ const getUniquePhotoId = createRandomIdFromRangeGenerator(1, 25);
 const createUserComments = () => ({
   id: getUniqueCommentId(),
   avatar: `img/avatar-${ getRandomInteger(1, 6) }.svg`,
-  message: getRandomArrayElement(MESSAGE),
+  message: getRandomArrayElement(MESSAGES),
   name: getRandomArrayElement(NAMES),
 });
 
 const createUser = () => ({
   id: getUniqueUserId(),
   url: `photos/${ getUniquePhotoId() }.jpg`,
-  description: getRandomArrayElement(DESCRIPTION),
+  description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomInteger(15, 200),
   name: getRandomArrayElement(NAMES),
   comment: createUserComments(),

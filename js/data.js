@@ -80,9 +80,9 @@ const createUser = () => ({
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomInteger(MIN_COUNT_LIKE, MAX_COUNT_LIKE),
   name: getRandomArrayElement(NAMES),
-  comment: createUserComments(),
+  comments: createUserComments(),
 });
 
-const newUser = Array.from({length: SIMILAR_USERS_COUNT}, createUser);
+const newUser = () => Array.from({length: SIMILAR_USERS_COUNT}, createUser);
 
 export {newUser};

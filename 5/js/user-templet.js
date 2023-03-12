@@ -12,7 +12,7 @@ createSimilarUser.forEach(({url, likes, comments}) => {
   const userElement = similarUserTemplate.cloneNode(true);
 
   userElement.querySelector('.picture__img').src = url;
-  userElement.querySelector('.picture__comments').textContent = comments;
+  userElement.querySelector('.picture__comments').textContent = comments.length;
   userElement.querySelector('.picture__likes').textContent = likes;
 
   similarListFragment.appendChild(userElement);

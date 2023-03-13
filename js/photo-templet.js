@@ -1,11 +1,9 @@
-import { createUniquePhoto } from './main.js';
-
 const similarListElement = document.querySelector('.pictures');
 const similarPhotoTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const similarListFragment = document.createDocumentFragment();
 
-const createTempletPhotos = function () {
-  createUniquePhoto.forEach(({url, likes, comments}) => {
+const createTempletPhotos = function (photos) {
+  photos.forEach(({url, likes, comments}) => {
     const userElement = similarPhotoTemplate.cloneNode(true);
 
     userElement.querySelector('.picture__img').src = url;

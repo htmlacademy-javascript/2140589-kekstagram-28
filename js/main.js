@@ -1,2 +1,8 @@
-import {newUser} from './data.js';
-import {createSimilarUser} from './user-templet.js';
+import {newPhotos} from './data.js';
+import {createTempletPhotos} from './photo-templet.js';
+
+const createSimilarPhoto = newPhotos;
+
+export {createSimilarPhoto};
+
+createTempletPhotos();

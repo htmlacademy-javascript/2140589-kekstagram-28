@@ -1,8 +1,8 @@
 import {newPhotos} from './data.js';
 import {createTempletPhotos} from './photo-templet.js';
 
-const createSimilarPhoto = newPhotos;
+const createUniquePhoto = newPhotos;
 
-export {createSimilarPhoto};
+export {createUniquePhoto};
 
 createTempletPhotos();

@@ -14,7 +14,7 @@ const MIN_COUNT_AVATAR = 1;
 const MAX_COUNT_AVATAR = 6;
 
 
-const SIMILAR_USERS_COUNT = 25;
+const SIMILAR_PHOTOS_COUNT = 25;
 
 const NAMES = [
   'Иван',
@@ -67,22 +67,22 @@ const getUniqueCommentId = createRandomIdFromRangeGenerator(MIN_COUNT_COMMENTS_I
 const getUniqueUserId = createRandomIdFromRangeGenerator(MIN_COUNT_USERS_ID, MAX_COUNT_USERS_ID);
 const getUniquePhotoId = createRandomIdFromRangeGenerator(MIN_COUNT_PHOTOS_ID, MAX_COUNT_PHOTOS_ID);
 
-const createUserComments = () => ({
+const createPhotosComments = () => ({
   id: getUniqueCommentId(),
   avatar: `img/avatar-${ getRandomInteger(MIN_COUNT_AVATAR, MAX_COUNT_AVATAR) }.svg`,
   message: getRandomArrayElement(MESSAGES),
   name: getRandomArrayElement(NAMES),
 });
 
-const createUser = () => ({
+const createPhotos = () => ({
   id: getUniqueUserId(),
   url: `photos/${ getUniquePhotoId() }.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomInteger(MIN_COUNT_LIKE, MAX_COUNT_LIKE),
   name: getRandomArrayElement(NAMES),
-  comment: createUserComments(),
+  comments: createPhotosComments(),
 });
 
-const newUser = Array.from({length: SIMILAR_USERS_COUNT}, createUser);
+const newPhotos = Array.from({length: SIMILAR_PHOTOS_COUNT}, createPhotos);
 
-export {newUser};
+export {newPhotos};

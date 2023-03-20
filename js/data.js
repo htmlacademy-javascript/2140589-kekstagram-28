@@ -96,4 +96,4 @@ const createPhotos = () => ({
 
 const newPhotos = Array.from({length: SIMILAR_PHOTOS_COUNT}, createPhotos);
 
-export {newPhotos, createPhotosComments};
+export {newPhotos};

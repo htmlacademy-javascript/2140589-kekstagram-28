@@ -1,9 +1,9 @@
 const commentsList = document.querySelector('.social__comments');
-const socialComment = document.querySelector('social__comment');
+const socialComment = document.querySelector('.social__comment');
 const commentsListFragment = document.createDocumentFragment();
 
 const createTempletComments = function (comments) {
-  // commentsList.innerHTML = '';
+  commentsList.innerHTML = '';
   comments.forEach(({avatar, message, name}) => {
     const userComment = socialComment.cloneNode(true);
 
@@ -20,4 +20,3 @@ const createTempletComments = function (comments) {
 };
 
 export {createTempletComments};
-

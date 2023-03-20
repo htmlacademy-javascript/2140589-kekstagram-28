@@ -1,9 +1,5 @@
-import { createPhotosComments } from './data.js';
-import {isEscapeKey, isEnterKey} from './utils.js';
-import {createTempletComments} from './user-comments.js';
+import {isEscapeKey} from './utils.js';
 const bigPicture = document.querySelector('.big-picture');
-import {newPhotos} from './data.js';
-
 
 const fillBigPicture = ({url, description, likes, comments}) => {
   bigPicture.querySelector('.big-picture__img').querySelector('img').src = url;
@@ -25,7 +21,6 @@ const onDocumentEscapeKeydown = (evt) => {
   }
 };
 
-
 function closeUserModal () {
   bigPicture.classList.add('hidden');
   body.classList.remove('modal-open');
@@ -38,10 +33,8 @@ const showBigPicture = (photo) => {
   body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentEscapeKeydown);
   fillBigPicture(photo);
-  // createTempletComments(photo);
-  // commentsCounter.classList.add('hidden');
-  // commentsLoader.classList.add('hidden');
-  console.log(photo);
+  commentsCounter.classList.add('hidden');
+  commentsLoader.classList.add('hidden');
 };
 
 export {showBigPicture};

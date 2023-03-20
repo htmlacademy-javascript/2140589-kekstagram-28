@@ -5,7 +5,6 @@ import {createTempletComments} from './user-comments.js';
 
 const container = document.querySelector('.pictures');
 
-
 const renderGallery = () => {
   container.addEventListener('click', (evt) => {
     const thumbnail = evt.target.closest('.picture');
@@ -20,6 +19,5 @@ const renderGallery = () => {
   });
   createTempletPhotos(newPhotos);
 };
-
 
 export {renderGallery};

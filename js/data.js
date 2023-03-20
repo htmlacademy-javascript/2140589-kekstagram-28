@@ -74,15 +74,26 @@ const createPhotosComments = () => ({
   name: getRandomArrayElement(NAMES),
 });
 
+const createRandomNumber = () => {
+  const uniqueCommentMessage = getRandomInteger (0,7);
+  const uniqueCommentAvatar = getRandomInteger (1, MAX_COUNT_AVATAR);
+  const countNumber = getRandomInteger(1, 30);
+  const comments = [];
+  for (let i = 0; i < countNumber; i++) {
+    comments[i] = createPhotosComments(uniqueCommentAvatar, uniqueCommentMessage);
+  }
+  return comments;
+};
+
 const createPhotos = () => ({
   id: getUniqueUserId(),
   url: `photos/${ getUniquePhotoId() }.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomInteger(MIN_COUNT_LIKE, MAX_COUNT_LIKE),
   name: getRandomArrayElement(NAMES),
-  comments: createPhotosComments(),
+  comments: createRandomNumber(),
 });
 
 const newPhotos = Array.from({length: SIMILAR_PHOTOS_COUNT}, createPhotos);
 
-export {newPhotos};
+export {newPhotos, createPhotosComments};

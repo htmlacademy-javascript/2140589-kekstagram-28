@@ -3,12 +3,14 @@ const similarPhotoTemplate = document.querySelector('#picture').content.querySel
 const similarListFragment = document.createDocumentFragment();
 
 const createTempletPhotos = function (photos) {
-  photos.forEach(({url, likes, comments}) => {
+  photos.forEach(({url, likes, comments, description, id}) => {
     const userElement = similarPhotoTemplate.cloneNode(true);
 
     userElement.querySelector('.picture__img').src = url;
-    userElement.querySelector('.picture__comments').textContent = comments.length;
+    userElement.querySelector('.picture__img').alt = description;
     userElement.querySelector('.picture__likes').textContent = likes;
+    userElement.querySelector('.picture__comments').textContent = comments.length;
+    userElement.dataset.userElementId = id;
 
     similarListFragment.appendChild(userElement);
 

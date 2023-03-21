@@ -4,6 +4,7 @@ const commentsListFragment = document.createDocumentFragment();
 
 const createTempletComments = function (comments) {
   commentsList.innerHTML = '';
+  
   comments.forEach(({avatar, message, name}) => {
     const userComment = socialComment.cloneNode(true);
 

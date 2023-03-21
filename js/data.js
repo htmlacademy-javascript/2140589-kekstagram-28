@@ -79,9 +79,11 @@ const createRandomNumber = () => {
   const uniqueCommentAvatar = getRandomInteger (1, MAX_COUNT_AVATAR);
   const countNumber = getRandomInteger(1, 30);
   const comments = [];
+  
   for (let i = 0; i < countNumber; i++) {
     comments[i] = createPhotosComments(uniqueCommentAvatar, uniqueCommentMessage);
   }
+  
   return comments;
 };
 

@@ -8,15 +8,19 @@ const container = document.querySelector('.pictures');
 const renderGallery = () => {
   container.addEventListener('click', (evt) => {
     const thumbnail = evt.target.closest('.picture');
+    
     if (!thumbnail) {
       return;
     }
+    
     const picture = newPhotos.find(
       (item) => item.id === Number(thumbnail.dataset.userElementId)
     );
+    
     showBigPicture(picture);
     createTempletComments(picture.comments);
   });
+  
   createTempletPhotos(newPhotos);
 };
 

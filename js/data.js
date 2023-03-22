@@ -12,6 +12,10 @@ const MIN_COUNT_LIKE = 15;
 const MAX_COUNT_LIKE = 200;
 const MIN_COUNT_AVATAR = 1;
 const MAX_COUNT_AVATAR = 6;
+const MIN_COUNT_MESSAGES = 0;
+const MAX_COUNT_MESSAGES = 7;
+const MIN_COUNT_COMMENTS = 0;
+const MAX_COUNT_COMMENTS = 30;
 
 
 const SIMILAR_PHOTOS_COUNT = 25;
@@ -75,15 +79,15 @@ const createPhotosComments = () => ({
 });
 
 const createRandomNumber = () => {
-  const uniqueCommentMessage = getRandomInteger (0,7);
-  const uniqueCommentAvatar = getRandomInteger (1, MAX_COUNT_AVATAR);
-  const countNumber = getRandomInteger(1, 30);
+  const uniqueCommentMessage = getRandomInteger (MIN_COUNT_MESSAGES, MAX_COUNT_MESSAGES);
+  const uniqueCommentAvatar = getRandomInteger (MIN_COUNT_AVATAR, MAX_COUNT_AVATAR);
+  const countNumber = getRandomInteger(MIN_COUNT_COMMENTS, MAX_COUNT_COMMENTS);
   const comments = [];
-  
+
   for (let i = 0; i < countNumber; i++) {
     comments[i] = createPhotosComments(uniqueCommentAvatar, uniqueCommentMessage);
   }
-  
+
   return comments;
 };
 

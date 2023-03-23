@@ -1,4 +1,3 @@
-import {newPhotos} from './data.js';
-import {createTempletPhotos} from './photo-templet.js';
+import {renderGallery} from './gallery.js';
 
-createTempletPhotos(newPhotos);
+renderGallery();

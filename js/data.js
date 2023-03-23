@@ -12,6 +12,10 @@ const MIN_COUNT_LIKE = 15;
 const MAX_COUNT_LIKE = 200;
 const MIN_COUNT_AVATAR = 1;
 const MAX_COUNT_AVATAR = 6;
+const MIN_COUNT_MESSAGES = 0;
+const MAX_COUNT_MESSAGES = 7;
+const MIN_COUNT_COMMENTS = 0;
+const MAX_COUNT_COMMENTS = 30;
 
 
 const SIMILAR_PHOTOS_COUNT = 25;
@@ -74,13 +78,26 @@ const createPhotosComments = () => ({
   name: getRandomArrayElement(NAMES),
 });
 
+const createRandomNumber = () => {
+  const uniqueCommentMessage = getRandomInteger (MIN_COUNT_MESSAGES, MAX_COUNT_MESSAGES);
+  const uniqueCommentAvatar = getRandomInteger (MIN_COUNT_AVATAR, MAX_COUNT_AVATAR);
+  const countNumber = getRandomInteger(MIN_COUNT_COMMENTS, MAX_COUNT_COMMENTS);
+  const comments = [];
+
+  for (let i = 0; i < countNumber; i++) {
+    comments[i] = createPhotosComments(uniqueCommentAvatar, uniqueCommentMessage);
+  }
+
+  return comments;
+};
+
 const createPhotos = () => ({
   id: getUniqueUserId(),
   url: `photos/${ getUniquePhotoId() }.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomInteger(MIN_COUNT_LIKE, MAX_COUNT_LIKE),
   name: getRandomArrayElement(NAMES),
-  comments: createPhotosComments(),
+  comments: createRandomNumber(),
 });
 
 const newPhotos = Array.from({length: SIMILAR_PHOTOS_COUNT}, createPhotos);

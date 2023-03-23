@@ -1,7 +1,6 @@
 import {showBigPicture} from './big-picture.js';
 import {createTempletPhotos} from './photo-templet.js';
 import {newPhotos} from './data.js';
-import {createTempletComments} from './user-comments.js';
 
 const container = document.querySelector('.pictures');
 
@@ -18,7 +17,6 @@ const renderGallery = () => {
     );
 
     showBigPicture(picture);
-    createTempletComments(picture.comments);
   });
 
   createTempletPhotos(newPhotos);

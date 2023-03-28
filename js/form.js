@@ -1,4 +1,6 @@
 import {isEscapeKey} from './utils.js';
+import { resetScale, setScale } from './scale.js';
+import {resetEffects} from './effects.js';
 
 const body = document.querySelector('body');
 const form = document.querySelector('.img-upload__form');
@@ -39,6 +41,8 @@ const onDocumentEscapeKeydown = (evt) => {
 function closeUserModal () {
   form.reset(); // возращает к стандартным насройкам формы.
   pristine.reset(); // возвращает к стандартным настройкам пристина.
+  resetScale();
+  resetEffects();
   formModal.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentEscapeKeydown); //удаляет обрабодчик закрытия окна на клавишу escape.
@@ -84,6 +88,7 @@ const onFormSubmit = (evt) => {
 
 // Эта функция открывает модальное окно, добавляет скрол на страницу, добавляет возможнсоть закрывать старницу по escape.
 const showFormModal = () => {
+  setScale();
   formModal.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentEscapeKeydown);

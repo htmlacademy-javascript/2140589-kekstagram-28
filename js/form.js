@@ -1,6 +1,9 @@
 import {isEscapeKey} from './utils.js';
 import { resetScale, setScale } from './scale.js';
 import {resetEffects} from './effects.js';
+import {sendData} from './api.js';
+// import { showAlert } from './utils.js';
+import {openSuccessMessage, openErrorMessage} from './messages.js';
 
 const body = document.querySelector('body');
 const form = document.querySelector('.img-upload__form');
@@ -12,6 +15,12 @@ const textDescription = document.querySelector('.text__description');
 const VALID_HASHTAG = /^#[a-zа-яё0-9]{1,19}$/i;
 const MAX_HASHTAG_LENGTH = 5;
 const HASHTAG_ERROR = 'Недопустимое значение хэштега';
+const submitButton = document.querySelector('#upload-submit');
+
+const SubmitButtonText = {
+  IDLE: 'Опубликовать',
+  SENDING: 'Публикую...'
+};
 
 // Этот код объявляет пристин.
 const pristine = new Pristine (form, {
@@ -76,14 +85,37 @@ pristine.addValidator(
   HASHTAG_ERROR
 );
 
-// Эта функция нужна для того, что бы блокировать или разрешать отправку формы.(кнопку отключаетесли что-то не так).
-const onFormSubmit = (evt) => {
-  const valid = pristine.validate();
-  //этот условие выполняет дейстие если все данные введены верно, блокирует кнопку если нет.
-  if (valid) {
-    form.submit();
-  }
-  evt.preventDefault();
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = SubmitButtonText.SENDING;
+};
+
+const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+  submitButton.textContent = SubmitButtonText.IDLE;
+};
+
+
+const setUserFormSubmit = (onSuccess) => {
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
+    const valid = pristine.validate();
+
+    if (valid) {
+      blockSubmitButton();
+      sendData(new FormData(evt.target))
+        .then(onSuccess)
+        .then(openSuccessMessage)
+        .catch(
+          (err) => {
+            openErrorMessage(err);
+          }
+        )
+        .finally(unblockSubmitButton);
+    }
+
+  });
 };
 
 // Эта функция открывает модальное окно, добавляет скрол на страницу, добавляет возможнсоть закрывать старницу по escape.
@@ -94,11 +126,9 @@ const showFormModal = () => {
   document.addEventListener('keydown', onDocumentEscapeKeydown);
 };
 
-form.addEventListener('submit', onFormSubmit);
-
 // Этот код делает так, что бы модальное окно открывалось не по клику, а после добавления фото на страницу.
 const clickOnUpload = function () {
   uploadFile.addEventListener('change', showFormModal);
 };
 
-export {clickOnUpload};
+export {clickOnUpload, setUserFormSubmit, closeUserModal };

@@ -7,9 +7,7 @@ getData()
   .then((newPhotos) => {
     renderGallery(newPhotos);
   }).catch(
-    (err) => {
-      showAlert(err.message);
-    }
+    (err) => showAlert(err.message)
   );
 
 clickOnUpload();

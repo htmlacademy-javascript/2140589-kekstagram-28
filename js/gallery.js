@@ -1,6 +1,5 @@
 import {showBigPicture} from './big-picture.js';
 import {createTempletPhotos} from './photo-templet.js';
-// import {newPhotos} from './data.js';
 
 const container = document.querySelector('.pictures');
 

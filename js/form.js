@@ -2,7 +2,6 @@ import {isEscapeKey} from './utils.js';
 import { resetScale, setScale } from './scale.js';
 import {resetEffects} from './effects.js';
 import {sendData} from './api.js';
-// import { showAlert } from './utils.js';
 import {openSuccessMessage, openErrorMessage} from './messages.js';
 
 const body = document.querySelector('body');

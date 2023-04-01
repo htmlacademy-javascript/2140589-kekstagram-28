@@ -6,7 +6,7 @@ const isEnterKey = (evt) => evt.key === 'Enter';
 
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');
-  
+
   alertContainer.style.zIndex = '100';
   alertContainer.style.position = 'absolute';
   alertContainer.style.left = '0';

@@ -23,8 +23,10 @@ const getSortedPictures = function () {
   switch(currentSorting) {
     case Sorter.RANDOM:
       return [...pictures].sort(sortRandomly).slice(0, MAX_PICTURES);
+
     case Sorter.DISCUSSED:
       return [...pictures].sort(sortByComments);
+
     default:
       return [...pictures];
   }
@@ -55,7 +57,9 @@ const setOnFilterClick = function (callback) {
 
 const init = function (loadedPictures, callback) {
   filterElement.classList.remove('img-filters--inactive');
+
   pictures = [...loadedPictures];
+
   setOnFilterClick(callback);
 };
 

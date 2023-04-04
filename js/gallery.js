@@ -28,7 +28,9 @@ const onPicturesContainerClick = (evt) => {
 
 const renderGallery = function (currentPictures) {
   pictures = currentPictures;
+
   createTempletPhotos(currentPictures, picturesContainer);
+
   picturesContainer.addEventListener('click', onPicturesContainerClick);
 };
 

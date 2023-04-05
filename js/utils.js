@@ -1,4 +1,5 @@
 const ALERT_SHOW_TIME = 5000;
+const TIMEDELAY = 500;
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
@@ -26,7 +27,7 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-function debounce (callback, timeoutDelay = 500) {
+function debounce (callback, timeoutDelay = TIMEDELAY) {
   // Используем замыкания, чтобы id таймаута у нас навсегда приклеился
   // к возвращаемой функции с setTimeout, тогда мы его сможем перезаписывать
   let timeoutId;

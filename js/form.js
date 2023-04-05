@@ -38,7 +38,8 @@ const isTextFieldFocused = () =>
 
 // эта функция позволяет закрывать окно с клавишы escape.
 const onDocumentEscapeKeydown = (evt) => {
-  if (isEscapeKey(evt) && !isTextFieldFocused()) { // если не хэштег или комментарий.
+  const errorModal = document.querySelector('.error');
+  if (isEscapeKey(evt) && !isTextFieldFocused() && !errorModal) { // если не хэштег или комментарий.
     evt.preventDefault();
     closeUserModal();
   }

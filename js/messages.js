@@ -6,7 +6,6 @@ const errorTemplate = document.querySelector('#error').content.querySelector('.e
 const successMessage = successTemplate.cloneNode(true);
 const errorMessage = errorTemplate.cloneNode(true);
 
-
 const closeSuccessMessage = () => {
   successMessage.remove();
 };
@@ -21,13 +20,19 @@ const onDocumentEscapeKeydown = (evt) => {
     closeSuccessMessage();
     closeErrorMessage();
   }
+
+  document.removeEventListener('keydown', onDocumentEscapeKeydown);
 };
 
-const onOutsideClick = () => {
-  closeSuccessMessage();
-  closeErrorMessage();
+const onOutsideClick = function (evt) {
+  const errorModal = document.querySelector('.error');
+  const successModal = document.querySelector('.success');
+  if (evt.target === successModal) {
+    closeSuccessMessage();
+  } else if (evt.target === errorModal) {
+    closeErrorMessage();
+  }
 };
-
 
 const openSuccessMessage = function () {
   body.append(successMessage);

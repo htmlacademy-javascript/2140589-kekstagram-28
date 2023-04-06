@@ -5,7 +5,7 @@ const similarPhotoTemplate = document.querySelector('#picture').content.querySel
 const similarListFragment = document.createDocumentFragment();
 
 // Эта функция прнимает значения объекта и передает миниатюры на странице.
-const createTempletPhotos = function (photos, picturesContainer) {
+const createTempletPhotos = (photos, picturesContainer) => {
   //этот код очищает текущие элементы .picture
   picturesContainer.querySelectorAll('.picture').forEach((element) => element.remove());
   // Этот метод перебирает каждый элемент масива и позволяет

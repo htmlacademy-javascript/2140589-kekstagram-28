@@ -16,24 +16,25 @@ const userModalCloseElement = bigPicture.querySelector('.big-picture__cancel');
 
 const body = document.querySelector('body');
 
-// Эта функция позволяет закрывать модальное окно (большую фотографию) на клавищу escape.
-const onDocumentEscapeKeydown = (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    closeUserModal();
-  }
-};
-
 // Эта функция закрытия модального окна. Она добавляет класс hidden в разметку(закрывает большую картинку),
 //стирает комментарии, убирает скролл с окна.
-function closeUserModal () {
+const closeUserModal = () => {
   // эта функция добавляет класс в разметку.
   bigPicture.classList.add('hidden');
   // эта функция убирает класс из разметки.
   body.classList.remove('modal-open');
   // Эта функция обновляет значение счеткича комментариев.
   resetCommentsShown();
-}
+};
+
+// Эта функция позволяет закрывать модальное окно (большую фотографию) на клавищу escape.
+const onDocumentEscapeKeydown = (evt) => {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    closeUserModal();
+    document.removeEventListener('click', onDocumentEscapeKeydown);
+  }
+};
 
 //Добавляет обработчик события по клику на закрытие окна.
 userModalCloseElement.addEventListener('click', closeUserModal);

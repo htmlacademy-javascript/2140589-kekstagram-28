@@ -26,7 +26,7 @@ const onPicturesContainerClick = (evt) => {
   showBigPicture(picture);
 };
 
-const renderGallery = function (currentPictures) {
+const renderGallery = (currentPictures) => {
   pictures = currentPictures;
 
   createTempletPhotos(currentPictures, picturesContainer);

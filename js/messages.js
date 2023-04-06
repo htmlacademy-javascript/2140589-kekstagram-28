@@ -17,7 +17,7 @@ const onDocumentEscapeKeydown = (evt) => {
   }
 };
 
-const onOutsideClick = function (evt) {
+const onOutsideClick = (evt) => {
   if (evt.target === body.lastChild) {
     body.lastChild.remove();
 

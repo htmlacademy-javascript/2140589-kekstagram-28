@@ -2,7 +2,7 @@ import {isEscapeKey} from './utils.js';
 import { resetScale, setScale } from './scale.js';
 import {resetEffects} from './effects.js';
 import {sendData} from './api.js';
-import {openSuccessMessage, openErrorMessage} from './messages.js';
+import {openMessage} from './messages.js';
 
 const body = document.querySelector('body');
 const form = document.querySelector('.img-upload__form');
@@ -28,33 +28,31 @@ const pristine = new Pristine (form, {
   errorTextClass: 'img-upload__field-wrapper__error',
 });
 
-// добавляет обрабодчик на закрытие модального окна по кнопке.
-uploadCancelButton.addEventListener('click', closeUserModal);
-
 //используется что бы проверить лежит ли в документе поле с хэштегом или комментарием.
 const isTextFieldFocused = () =>
   document.activeElement === textHashtag ||
   document.activeElement === textDescription;
 
-// эта функция позволяет закрывать окно с клавишы escape.
-const onDocumentEscapeKeydown = (evt) => {
-  if (isEscapeKey(evt) && !isTextFieldFocused()) { // если не хэштег или комментарий.
-    evt.preventDefault();
-    closeUserModal();
-  }
-};
-
 
 // эта функция добавляет классы для закрытия модального окна.
-function closeUserModal () {
+const closeUserModal = () => {
   form.reset(); // возращает к стандартным насройкам формы.
   pristine.reset(); // возвращает к стандартным настройкам пристина.
   resetScale();
   resetEffects();
   formModal.classList.add('hidden');
   body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onDocumentEscapeKeydown); //удаляет обрабодчик закрытия окна на клавишу escape.
-}
+};
+
+// эта функция позволяет закрывать окно с клавишы escape.
+const onDocumentEscapeKeydown = (evt) => {
+  const errorModal = document.querySelector('.error');
+  if (isEscapeKey(evt) && !isTextFieldFocused() && !errorModal) { // если не хэштег или комментарий.
+    evt.preventDefault();
+    closeUserModal();
+    document.removeEventListener('keydown', onDocumentEscapeKeydown); //удаляет обрабодчик закрытия окна на клавишу escape.
+  }
+};
 
 // проверяет соответсвуют ли знаки в хэштеге разрешенным.
 const isValidTag = (tag) => VALID_HASHTAG.test(tag);
@@ -105,10 +103,10 @@ const setUserFormSubmit = (onSuccess) => {
       blockSubmitButton();
       sendData(new FormData(evt.target))
         .then(onSuccess)
-        .then(openSuccessMessage)
+        .then(openMessage)
         .catch(
           (err) => {
-            openErrorMessage(err);
+            openMessage(err);
           }
         )
         .finally(unblockSubmitButton);
@@ -122,11 +120,14 @@ const showFormModal = () => {
   setScale();
   formModal.classList.remove('hidden');
   body.classList.add('modal-open');
+
   document.addEventListener('keydown', onDocumentEscapeKeydown);
+  // добавляет обрабодчик на закрытие модального окна по кнопке.
+  uploadCancelButton.addEventListener('click', closeUserModal);
 };
 
 // Этот код делает так, что бы модальное окно открывалось не по клику, а после добавления фото на страницу.
-const clickOnUpload = function () {
+const clickOnUpload = () => {
   uploadFile.addEventListener('change', showFormModal);
 };
 

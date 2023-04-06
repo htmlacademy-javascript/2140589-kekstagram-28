@@ -11,16 +11,12 @@ let currentSorting = Sorter.DEFAULT;
 
 let pictures = [];
 
-const sortRandomly = function () {
-  return Math.random() - 0.5;
-};
+const sortRandomly = () => Math.random() - 0.5;
 
-const sortByComments = function (pictureA, pictureB) {
-  return pictureB.comments.length - pictureA.comments.length;
-};
+const sortByComments = (pictureA, pictureB) => pictureB.comments.length - pictureA.comments.length;
 
-const getSortedPictures = function () {
-  switch(currentSorting) {
+const getSortedPictures = () => {
+  switch (currentSorting) {
     case Sorter.RANDOM:
       return [...pictures].sort(sortRandomly).slice(0, MAX_PICTURES);
 
@@ -32,7 +28,7 @@ const getSortedPictures = function () {
   }
 };
 
-const setOnFilterClick = function (callback) {
+const setOnFilterClick = (callback) => {
   filterElement.addEventListener('click', (evt) => {
     if (!evt.target.classList.contains('img-filters__button')) {
       return;
@@ -55,7 +51,7 @@ const setOnFilterClick = function (callback) {
   });
 };
 
-const init = function (loadedPictures, callback) {
+const init = (loadedPictures, callback) => {
   filterElement.classList.remove('img-filters--inactive');
 
   pictures = [...loadedPictures];

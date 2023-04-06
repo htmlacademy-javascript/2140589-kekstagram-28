@@ -10,10 +10,10 @@ let savedComments = [];
 
 // эта функциия прнимает массив комментариев, добавляет полученную информацию в элементы дом дерева,
 // передает полученные комментарии в функцию, которая их отрисовывает.
-const createTempletComments = function (comments) {
+const createTempletComments = (comments) => {
   // этот метод перебирает элементы массива, и позволяет выполнить функцию. В этом случае записать
   // данные массива в разметку комментариев.
-  comments.forEach(({avatar, message, name}) => {
+  comments.forEach(({ avatar, message, name }) => {
     // клонирует и возвращает дуплекат элемента.
     const userComment = socialComment.cloneNode(true);
 
@@ -31,7 +31,7 @@ const createTempletComments = function (comments) {
 
 // Эта функция принимает массив комментариев. Добавляет данные в счетчик. Убирает/добавляет кнопку загурзить еще.
 // отрисовывает комментарии на странице (передает количество отрисованных комментов).
-const showComments = function (comments) {
+const showComments = (comments) => {
   savedComments = comments;
 
   // сверяет длинну массива и количесвто отрисованных комментариев. Если на странице показанных комментариев меньше, чем длина массива,
@@ -51,7 +51,7 @@ const showComments = function (comments) {
 };
 
 //Эта функция прибавляет 5 комментаривев к текущему колличесвту комментариев на каждой итерации.
-const clickOnLoader = function () {
+const clickOnLoader = () => {
   // на каждой итерации к количевту показанных комментариев прибавляется 5 комментариев.
   commentsShown += EXTRA_COMMENTS;
   // выводит через параметр сохраненные комментарии (5-10-15-20 и тд)
@@ -59,7 +59,7 @@ const clickOnLoader = function () {
 };
 
 // Эта функция обнуляет колиесвто комментариев.
-const resetCommentsShown = function() {
+const resetCommentsShown = () => {
   commentsShown = 0;
 };
 

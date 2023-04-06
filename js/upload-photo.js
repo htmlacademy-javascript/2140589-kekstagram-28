@@ -3,7 +3,7 @@ const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 const fileChooser = document.querySelector('.img-upload__start input[type=file]');
 const preview = document.querySelector('.img-upload__preview img');
 
-const uploadPhoto = function() {
+const uploadPhoto = () => {
   fileChooser.addEventListener('change', () => {
     const file = fileChooser.files[0];
     const fileName = file.name.toLowerCase();

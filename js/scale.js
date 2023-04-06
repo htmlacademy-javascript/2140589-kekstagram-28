@@ -8,13 +8,13 @@ const MAX_SCALE = 100;
 const DEFAULT_SCALE = 100;
 
 // эта функция получает значение поля при уменьшее или увеличении маштаба фотографии.
-const scaleImage = function (value) {
+const scaleImage = (value) => {
   imageElement.style.transform = `scale(${value / 100})`; //подставляет код к css правилам.
   scaleControlValue.value = `${value}%`; //прибавляет % в пол форме.
 };
 
 // Эта функция передает новое значения поля ввода при - значения. (отнимает 25)
-const onSmallerButtonClick = function () {
+const onSmallerButtonClick = () => {
   const currentValue = parseInt(scaleControlValue.value, 10);
 
   let newValue = currentValue - SCALE_STEP;
@@ -27,7 +27,7 @@ const onSmallerButtonClick = function () {
 };
 
 // / Эта функция передает новое значения поля ввода при + значения. (прибавляет 25)
-const onBiggerButtonClick = function () {
+const onBiggerButtonClick = () => {
   const currentValue = parseInt(scaleControlValue.value, 10);
 
   let newValue = currentValue + SCALE_STEP;

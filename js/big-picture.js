@@ -2,6 +2,8 @@ import {isEscapeKey} from './utils.js';
 import { showComments, resetCommentsShown } from './user-comments.js';
 
 const bigPicture = document.querySelector('.big-picture');
+const userModalCloseElement = bigPicture.querySelector('.big-picture__cancel');
+const body = document.querySelector('body');
 
 //Эта функция принимает значения массива и записывеает эти значения в элементы.
 const fillBigPicture = ({url, description, likes}) => {
@@ -11,10 +13,6 @@ const fillBigPicture = ({url, description, likes}) => {
   bigPicture.querySelector('.social__caption').textContent = description;
   bigPicture.querySelector('.likes-count').textContent = likes;
 };
-
-const userModalCloseElement = bigPicture.querySelector('.big-picture__cancel');
-
-const body = document.querySelector('body');
 
 // Эта функция закрытия модального окна. Она добавляет класс hidden в разметку(закрывает большую картинку),
 //стирает комментарии, убирает скролл с окна.

@@ -2,7 +2,7 @@ import {isEscapeKey} from './utils.js';
 import { resetScale, setScale } from './scale.js';
 import {resetEffects} from './effects.js';
 import {sendData} from './api.js';
-import {openSuccessMessage, openErrorMessage} from './messages.js';
+import {openMessage} from './messages.js';
 
 const body = document.querySelector('body');
 const form = document.querySelector('.img-upload__form');
@@ -106,10 +106,10 @@ const setUserFormSubmit = (onSuccess) => {
       blockSubmitButton();
       sendData(new FormData(evt.target))
         .then(onSuccess)
-        .then(openSuccessMessage)
+        .then(openMessage)
         .catch(
           (err) => {
-            openErrorMessage(err);
+            openMessage(err);
           }
         )
         .finally(unblockSubmitButton);

@@ -21,61 +21,51 @@ const SubmitButtonText = {
   SENDING: 'Публикую...'
 };
 
-// Этот код объявляет пристин.
 const pristine = new Pristine (form, {
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
   errorTextClass: 'img-upload__field-wrapper__error',
 });
 
-//используется что бы проверить лежит ли в документе поле с хэштегом или комментарием.
 const isTextFieldFocused = () =>
   document.activeElement === textHashtag ||
   document.activeElement === textDescription;
 
-
-// эта функция добавляет классы для закрытия модального окна.
 const closeUserModal = () => {
-  form.reset(); // возращает к стандартным насройкам формы.
-  pristine.reset(); // возвращает к стандартным настройкам пристина.
+  form.reset();
+  pristine.reset();
   resetScale();
   resetEffects();
   formModal.classList.add('hidden');
   body.classList.remove('modal-open');
 };
 
-// эта функция позволяет закрывать окно с клавишы escape.
 const onDocumentEscapeKeydown = (evt) => {
   const errorModal = document.querySelector('.error');
-  if (isEscapeKey(evt) && !isTextFieldFocused() && !errorModal) { // если не хэштег или комментарий.
+  if (isEscapeKey(evt) && !isTextFieldFocused() && !errorModal) {
     evt.preventDefault();
     closeUserModal();
-    document.removeEventListener('keydown', onDocumentEscapeKeydown); //удаляет обрабодчик закрытия окна на клавишу escape.
+    document.removeEventListener('keydown', onDocumentEscapeKeydown);
   }
 };
 
-// проверяет соответсвуют ли знаки в хэштеге разрешенным.
 const isValidTag = (tag) => VALID_HASHTAG.test(tag);
 
-// проверяет колличесвто хэштегов.
 const hasValidCount = (tags) => tags.length <= MAX_HASHTAG_LENGTH;
 
-// функция проверят что бы не было одинаковых хэштегов.
 const hasUniqueTags = (tags) => {
   const lowerCaseTags = tags.map((tag) => tag.toLowerCase());
   return lowerCaseTags.length === new Set(lowerCaseTags).size;
 };
 
-// это функция валидации хэщтега. Она принимает параметр, который ей передает пристин и сравнивает значения.
 const validateTags = (value) => {
   const tags = value
-    .trim() // удаляет лишни пробелы в начале и в конце строки.
-    .split(' ') // добалвяет пробел между хэштегами.
+    .trim()
+    .split(' ')
     .filter((tag) => tag.trim().length);
   return hasValidCount(tags) && hasUniqueTags(tags) && tags.every(isValidTag);
 };
 
-// добавляет валидатор хэштега.
 pristine.addValidator(
   textHashtag,
   validateTags,
@@ -91,7 +81,6 @@ const unblockSubmitButton = () => {
   submitButton.disabled = false;
   submitButton.textContent = SubmitButtonText.IDLE;
 };
-
 
 const setUserFormSubmit = (onSuccess) => {
   form.addEventListener('submit', (evt) => {
@@ -115,18 +104,14 @@ const setUserFormSubmit = (onSuccess) => {
   });
 };
 
-// Эта функция открывает модальное окно, добавляет скрол на страницу, добавляет возможнсоть закрывать старницу по escape.
 const showFormModal = () => {
   setScale();
   formModal.classList.remove('hidden');
   body.classList.add('modal-open');
-
   document.addEventListener('keydown', onDocumentEscapeKeydown);
-  // добавляет обрабодчик на закрытие модального окна по кнопке.
   uploadCancelButton.addEventListener('click', closeUserModal);
 };
 
-// Этот код делает так, что бы модальное окно открывалось не по клику, а после добавления фото на страницу.
 const clickOnUpload = () => {
   uploadFile.addEventListener('change', showFormModal);
 };

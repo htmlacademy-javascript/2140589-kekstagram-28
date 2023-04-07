@@ -1,11 +1,11 @@
 const commentsList = document.querySelector('.social__comments');
 const socialComment = document.querySelector('.social__comment');
 const commentsListFragment = document.createDocumentFragment();
-let commentsShown = 0;
 const EXTRA_COMMENTS = 5;
 const commentsCounter = document.querySelector('.social__comment-count');
 const commentsLoader = document.querySelector('.comments-loader');
 let savedComments = [];
+let commentsShown = 0;
 
 const createTempletComments = (comments) => {
   comments.forEach(({ avatar, message, name }) => {

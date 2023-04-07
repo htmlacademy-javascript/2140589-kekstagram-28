@@ -20,9 +20,7 @@ const closeUserModal = () => {
 const onDocumentEscapeKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-
     closeUserModal();
-
     document.removeEventListener('click', onDocumentEscapeKeydown);
   }
 };

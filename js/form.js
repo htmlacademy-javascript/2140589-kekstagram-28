@@ -100,7 +100,6 @@ const setUserFormSubmit = (onSuccess) => {
         )
         .finally(unblockSubmitButton);
     }
-
   });
 };
 

@@ -56,7 +56,6 @@ const EFFECTS = [
 
 const DEFAULT_EFFECT = EFFECTS[0];
 let chosenEffect = DEFAULT_EFFECT;
-
 const imageElement = document.querySelector('.img-upload__preview img');
 const effectsElement = document.querySelector('.effects');
 const sliderElement = document.querySelector('.effect-level__slider');

@@ -1,5 +1,5 @@
 import {showBigPicture} from './big-picture.js';
-import {createTemplatePhotos} from './photos-template.js';
+import {createTemplatePhotos} from './miniatures.js';
 
 let pictures = [];
 const picturesContainerElement = document.querySelector('.pictures');

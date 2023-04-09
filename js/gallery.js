@@ -1,8 +1,8 @@
 import {showBigPicture} from './big-picture.js';
-import {createTempletPhotos} from './photo-templet.js';
+import {createTemplatePhotos} from './miniatures.js';
 
 let pictures = [];
-const picturesContainer = document.querySelector('.pictures');
+const picturesContainerElement = document.querySelector('.pictures');
 
 const onPicturesContainerClick = (evt) => {
   const thumbnail = evt.target.closest('.picture');
@@ -19,8 +19,8 @@ const onPicturesContainerClick = (evt) => {
 
 const renderGallery = (currentPictures) => {
   pictures = currentPictures;
-  createTempletPhotos(currentPictures, picturesContainer);
-  picturesContainer.addEventListener('click', onPicturesContainerClick);
+  createTemplatePhotos(currentPictures, picturesContainerElement);
+  picturesContainerElement.addEventListener('click', onPicturesContainerClick);
 };
 
 export {renderGallery};

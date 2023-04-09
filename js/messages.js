@@ -1,8 +1,8 @@
 import {isEscapeKey} from './utils.js';
 
 const body = document.querySelector('body');
-const successTemplate = document.querySelector('#success').content.querySelector('.success');
-const errorTemplate = document.querySelector('#error').content.querySelector('.error');
+const successTemplateElement = document.querySelector('#success').content.querySelector('.success');
+const errorTemplateElement = document.querySelector('#error').content.querySelector('.error');
 
 const closeMessage = () => {
   body.lastChild.remove();
@@ -26,8 +26,8 @@ const onOutsideClick = (evt) => {
 };
 
 const openMessage = (message) => {
-  const successMessage = successTemplate.cloneNode(true);
-  const errorMessage = errorTemplate.cloneNode(true);
+  const successMessage = successTemplateElement.cloneNode(true);
+  const errorMessage = errorTemplateElement.cloneNode(true);
   document.addEventListener('keydown', onDocumentEscapeKeydown);
   document.addEventListener('click', onOutsideClick);
 

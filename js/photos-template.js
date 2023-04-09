@@ -1,12 +1,12 @@
 const similarListElement = document.querySelector('.pictures');
-const similarPhotoTemplate = document.querySelector('#picture').content.querySelector('.picture');
+const similarPhotoTemplateElement = document.querySelector('#picture').content.querySelector('.picture');
 const similarListFragment = document.createDocumentFragment();
 
-const createTempletPhotos = (photos, picturesContainer) => {
+const createTemplatePhotos = (photos, picturesContainer) => {
   picturesContainer.querySelectorAll('.picture').forEach((element) => element.remove());
 
   photos.forEach(({url, likes, comments, description, id}) => {
-    const userElement = similarPhotoTemplate.cloneNode(true);
+    const userElement = similarPhotoTemplateElement.cloneNode(true);
 
     userElement.querySelector('.picture__img').src = url;
     userElement.querySelector('.picture__img').alt = description;
@@ -20,4 +20,4 @@ const createTempletPhotos = (photos, picturesContainer) => {
   });
 };
 
-export {createTempletPhotos};
+export {createTemplatePhotos};

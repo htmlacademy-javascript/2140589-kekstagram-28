@@ -1,15 +1,15 @@
-const commentsList = document.querySelector('.social__comments');
-const socialComment = document.querySelector('.social__comment');
+const commentsListElement = document.querySelector('.social__comments');
+const socialCommentElement = document.querySelector('.social__comment');
 const commentsListFragment = document.createDocumentFragment();
-const EXTRA_COMMENTS = 5;
-const commentsCounter = document.querySelector('.social__comment-count');
-const commentsLoader = document.querySelector('.comments-loader');
+const COMMENTS_COUNT_PER_LOAD = 5;
+const commentsCounterElement = document.querySelector('.social__comment-count');
+const commentsLoaderButtonElement = document.querySelector('.comments-loader');
 let savedComments = [];
 let commentsShown = 0;
 
 const createTempletComments = (comments) => {
   comments.forEach(({ avatar, message, name }) => {
-    const userComment = socialComment.cloneNode(true);
+    const userComment = socialCommentElement.cloneNode(true);
 
     userComment.querySelector('.social__picture').src = avatar;
     userComment.querySelector('.social__picture').alt = name;
@@ -18,25 +18,25 @@ const createTempletComments = (comments) => {
     commentsListFragment.appendChild(userComment);
   });
 
-  commentsList.appendChild(commentsListFragment);
+  commentsListElement.appendChild(commentsListFragment);
 };
 
 const showComments = (comments) => {
   savedComments = comments;
 
-  if (comments.length > commentsShown + EXTRA_COMMENTS) {
-    commentsLoader.classList.remove('hidden');
+  if (comments.length > commentsShown + COMMENTS_COUNT_PER_LOAD) {
+    commentsLoaderButtonElement.classList.remove('hidden');
   } else {
-    commentsLoader.classList.add('hidden');
+    commentsLoaderButtonElement.classList.add('hidden');
   }
 
-  createTempletComments(comments.slice(commentsShown, EXTRA_COMMENTS + commentsShown));
+  createTempletComments(comments.slice(commentsShown, COMMENTS_COUNT_PER_LOAD + commentsShown));
 
-  commentsCounter.innerHTML = `${comments.length < commentsShown + EXTRA_COMMENTS ? comments.length : commentsShown + EXTRA_COMMENTS} из <span class="comments-count">${comments.length}</span> комментариев`;
+  commentsCounterElement.innerHTML = `${comments.length < commentsShown + COMMENTS_COUNT_PER_LOAD ? comments.length : commentsShown + COMMENTS_COUNT_PER_LOAD} из <span class="comments-count">${comments.length}</span> комментариев`;
 };
 
 const clickOnLoader = () => {
-  commentsShown += EXTRA_COMMENTS;
+  commentsShown += COMMENTS_COUNT_PER_LOAD;
   showComments(savedComments);
 };
 
@@ -44,6 +44,6 @@ const resetCommentsShown = () => {
   commentsShown = 0;
 };
 
-commentsLoader.addEventListener('click', clickOnLoader);
+commentsLoaderButtonElement.addEventListener('click', clickOnLoader);
 
 export {showComments, resetCommentsShown};

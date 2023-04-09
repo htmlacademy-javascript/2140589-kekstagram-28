@@ -1,18 +1,18 @@
 import {isEscapeKey} from './utils.js';
 import { showComments, resetCommentsShown } from './user-comments.js';
 
-const bigPicture = document.querySelector('.big-picture');
-const userModalCloseElement = bigPicture.querySelector('.big-picture__cancel');
+const bigPictureElement = document.querySelector('.big-picture');
+const userModalCloseElement = bigPictureElement.querySelector('.big-picture__cancel');
 const body = document.querySelector('body');
 
 const fillBigPicture = ({url, description, likes}) => {
-  bigPicture.querySelector('.big-picture__img').querySelector('img').src = url;
-  bigPicture.querySelector('.social__caption').textContent = description;
-  bigPicture.querySelector('.likes-count').textContent = likes;
+  bigPictureElement.querySelector('.big-picture__img').querySelector('img').src = url;
+  bigPictureElement.querySelector('.social__caption').textContent = description;
+  bigPictureElement.querySelector('.likes-count').textContent = likes;
 };
 
 const closeUserModal = () => {
-  bigPicture.classList.add('hidden');
+  bigPictureElement.classList.add('hidden');
   body.classList.remove('modal-open');
   resetCommentsShown();
 };
@@ -28,11 +28,11 @@ const onDocumentEscapeKeydown = (evt) => {
 userModalCloseElement.addEventListener('click', closeUserModal);
 
 const showBigPicture = (photo) => {
-  bigPicture.classList.remove('hidden');
+  bigPictureElement.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentEscapeKeydown);
   fillBigPicture(photo);
-  bigPicture.querySelector('.social__comments').innerHTML = '';
+  bigPictureElement.querySelector('.social__comments').innerHTML = '';
   showComments(photo.comments);
 };
 

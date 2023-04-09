@@ -5,38 +5,38 @@ import {sendData} from './api.js';
 import {openMessage} from './messages.js';
 
 const body = document.querySelector('body');
-const form = document.querySelector('.img-upload__form');
-const formModal = document.querySelector('.img-upload__overlay');
-const uploadFile = document.querySelector('#upload-file');
-const uploadCancelButton = document.querySelector('.img-upload__cancel');
-const textHashtag = document.querySelector('.text__hashtags');
-const textDescription = document.querySelector('.text__description');
+const formElement = document.querySelector('.img-upload__form');
+const formModalElement = document.querySelector('.img-upload__overlay');
+const uploadFileElement = document.querySelector('#upload-file');
+const uploadCancelButtonElement = document.querySelector('.img-upload__cancel');
+const textHashtagElement = document.querySelector('.text__hashtags');
+const textDescriptionElement = document.querySelector('.text__description');
 const VALID_HASHTAG = /^#[a-zа-яё0-9]{1,19}$/i;
 const MAX_HASHTAG_LENGTH = 5;
 const HASHTAG_ERROR = 'Недопустимое значение хэштега';
-const submitButton = document.querySelector('#upload-submit');
+const submitButtonElement = document.querySelector('#upload-submit');
 
 const SubmitButtonText = {
   IDLE: 'Опубликовать',
   SENDING: 'Публикую...'
 };
 
-const pristine = new Pristine (form, {
+const pristine = new Pristine (formElement, {
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
   errorTextClass: 'img-upload__field-wrapper__error',
 });
 
 const isTextFieldFocused = () =>
-  document.activeElement === textHashtag ||
-  document.activeElement === textDescription;
+  document.activeElement === textHashtagElement ||
+  document.activeElement === textDescriptionElement;
 
 const closeUserModal = () => {
-  form.reset();
+  formElement.reset();
   pristine.reset();
   resetScale();
   resetEffects();
-  formModal.classList.add('hidden');
+  formModalElement.classList.add('hidden');
   body.classList.remove('modal-open');
 };
 
@@ -67,23 +67,23 @@ const validateTags = (value) => {
 };
 
 pristine.addValidator(
-  textHashtag,
+  textHashtagElement,
   validateTags,
   HASHTAG_ERROR
 );
 
 const blockSubmitButton = () => {
-  submitButton.disabled = true;
-  submitButton.textContent = SubmitButtonText.SENDING;
+  submitButtonElement.disabled = true;
+  submitButtonElement.textContent = SubmitButtonText.SENDING;
 };
 
 const unblockSubmitButton = () => {
-  submitButton.disabled = false;
-  submitButton.textContent = SubmitButtonText.IDLE;
+  submitButtonElement.disabled = false;
+  submitButtonElement.textContent = SubmitButtonText.IDLE;
 };
 
 const setUserFormSubmit = (onSuccess) => {
-  form.addEventListener('submit', (evt) => {
+  formElement.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
     const valid = pristine.validate();
@@ -105,14 +105,14 @@ const setUserFormSubmit = (onSuccess) => {
 
 const showFormModal = () => {
   setScale();
-  formModal.classList.remove('hidden');
+  formModalElement.classList.remove('hidden');
   body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentEscapeKeydown);
-  uploadCancelButton.addEventListener('click', closeUserModal);
+  uploadCancelButtonElement.addEventListener('click', closeUserModal);
 };
 
 const clickOnUpload = () => {
-  uploadFile.addEventListener('change', showFormModal);
+  uploadFileElement.addEventListener('change', showFormModal);
 };
 
 export {clickOnUpload, setUserFormSubmit, closeUserModal };

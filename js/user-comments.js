@@ -9,13 +9,13 @@ let commentsShown = 0;
 
 const createTempletComments = (comments) => {
   comments.forEach(({ avatar, message, name }) => {
-    const userComment = socialCommentElement.cloneNode(true);
+    const userCommentElement = socialCommentElement.cloneNode(true);
 
-    userComment.querySelector('.social__picture').src = avatar;
-    userComment.querySelector('.social__picture').alt = name;
-    userComment.querySelector('.social__text').textContent = message;
+    userCommentElement.querySelector('.social__picture').src = avatar;
+    userCommentElement.querySelector('.social__picture').alt = name;
+    userCommentElement.querySelector('.social__text').textContent = message;
 
-    commentsListFragment.appendChild(userComment);
+    commentsListFragment.appendChild(userCommentElement);
   });
 
   commentsListElement.appendChild(commentsListFragment);
